@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>هوية - ويدجت عربي</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Amiri&family=Tajawal&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app" class="widget-container">
+    <!-- رأس الويدجت: شريط التحكم (قابل للسحب) -->
+    <div class="drag-bar" id="drag-bar">
+      <span class="title">🕌 هوية</span>
+      <div class="controls">
+        <button class="settings-btn" id="settingsBtn">⚙️</button>
+      </div>
+    </div>
+
+    <!-- المحتوى الأساسي -->
+    <div class="content" id="content">
+      <!-- الساعة -->
+      <div class="time-card">
+        <div class="label">الوقت الآن</div>
+        <div class="value" id="clock">--:--:--</div>
+      </div>
+
+      <!-- التاريخ الميلادي والهجري -->
+      <div class="date-card">
+        <div class="gregorian" id="gregorian">--</div>
+        <div class="hijri" id="hijri">--</div>
+      </div>
+
+      <!-- أوقات الصلاة مع عدادات تنازلية -->
+      <div class="prayer-times">
+        <div class="prayer-item">
+          <span class="name">الفجر (السحور)</span>
+          <span class="time" id="fajr-time">--:--</span>
+          <span class="countdown" id="fajr-countdown">--:--:--</span>
+        </div>
+        <div class="prayer-item">
+          <span class="name">المغرب (الإفطار)</span>
+          <span class="time" id="maghrib-time">--:--</span>
+          <span class="countdown" id="maghrib-countdown">--:--:--</span>
+        </div>
+      </div>
+
+      <!-- آية أو ذكر متجدد -->
+      <div class="azkar-card">
+        <div class="azkar-text" id="randomAzkar">"ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار"</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
