@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>الإعدادات - هوية</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #1e2b3a;
+      color: white;
+      font-family: 'Cairo', sans-serif;
+      padding: 20px;
+      direction: rtl;
+    }
+    .settings-container {
+      max-width: 400px;
+      margin: auto;
+    }
+    h2 {
+      color: #ffd966;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #b0c4de;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #2d5a5a;
+      background: #2a3a4a;
+      color: white;
+      font-family: 'Cairo', sans-serif;
+    }
+    .btn-save {
+      background: #ffd966;
+      color: #1e2b3a;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    .btn-save:hover {
+      background: #f1c40f;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <h2>⚙️ تخصيص الويدجت</h2>
+    <div class="form-group">
+      <label>المدينة (بالانجليزي)</label>
+      <input type="text" id="city" value="Mecca">
+    </div>
+    <div class="form-group">
+      <label>الدولة (رمز)</label>
+      <input type="text" id="country" value="SA">
+    </div>
+    <div class="form-group">
+      <label>تعديل التاريخ الهجري (تأخير/تقديم)</label>
+      <input type="number" id="hijriOffset" value="1" min="-2" max="2">
+    </div>
+    <div class="form-group">
+      <label>موقع النافذة على الشاشة</label>
+      <select id="position">
+        <option value="top-left">أعلى يسار</option>
+        <option value="top-center">أعلى وسط</option>
+        <option value="top-right">أعلى يمين</option>
+        <option value="middle-left">وسط يسار</option>
+        <option value="center">وسط الشاشة</option>
+        <option value="middle-right">وسط يمين</option>
+        <option value="bottom-left">أسفل يسار</option>
+        <option value="bottom-center">أسفل وسط</option>
+        <option value="bottom-right">أسفل يمين</option>
+      </select>
+    </div>
+    <button class="btn-save" id="saveBtn">حفظ الإعدادات</button>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      const settings = {
+        city: document.getElementById('city').value,
+        country: document.getElementById('country').value,
+        hijriOffset: parseInt(document.getElementById('hijriOffset').value, 10),
+        position: document.getElementById('position').value
+      };
+      ipcRenderer.send('update-settings', settings);
+      window.close();
+    });
+  </script>
+</body>
+</html>
